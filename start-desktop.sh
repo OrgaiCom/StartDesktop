@@ -1,6 +1,32 @@
 #!/bin/bash
 set -e
 
+# 依存関係のチェックとインストール
+REQUIRED_PACKAGES="xvfb xfce4 x11vnc websockify novnc dbus-x11"
+PACKAGES_TO_INSTALL=""
+
+for pkg in $REQUIRED_PACKAGES; do
+  # パッケージ名とコマンド名が違う場合に対応
+  if [ "$pkg" = "xfce4" ]; then
+    command_to_check="startxfce4"
+  elif [ "$pkg" = "dbus-x11" ]; then
+    command_to_check="dbus-launch"
+  else
+    command_to_check="$pkg"
+  fi
+  
+  if ! command -v $command_to_check &> /dev/null; then
+    PACKAGES_TO_INSTALL="$PACKAGES_TO_INSTALL $pkg"
+  fi
+done
+
+if [ -n "$PACKAGES_TO_INSTALL" ]; then
+  echo "📦 必要なパッケージをインストールしています... ($PACKAGES_TO_INSTALL )"
+  sudo apt-get update
+  sudo apt-get install -y $PACKAGES_TO_INSTALL
+  echo "✅ インストールが完了しました。"
+fi
+
 export DISPLAY=:0
 
 echo "🚀 Starting virtual desktop environment..."
@@ -24,10 +50,6 @@ Xvfb :0 -screen 0 1280x800x16 &
 sleep 2
 
 # デスクトップ起動（dbus経由）
-if ! command -v dbus-launch >/dev/null 2>&1; then
-  echo "Installing dbus-x11..."
-  sudo apt update && sudo apt install -y dbus-x11
-fi
 dbus-launch startxfce4 &
 sleep 5
 
