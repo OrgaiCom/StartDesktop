@@ -17,6 +17,7 @@ GitHub Codespaces などの開発環境で仮想デスクトップ環境を起�
 2.  ターミナルを開き、スクリプトがあるディレクトリに移動します。
 3.  以下のコマンドでスクリプトを実行します。
     ```bash
+    chmod +x start-desktop.sh
     ./start-desktop.sh
     ```
 4.  スクリプトが正常に起動すると、Codespacesのフォワードポート機能により、ブラウザでアクセスするためのURLが表示されます。表示されたURLにアクセスしてください。（例: `https://<your-codespace>-6080.app.github.dev/vnc.html`）
