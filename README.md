@@ -5,14 +5,14 @@ GitHub Codespaces などの開発環境で仮想デスクトップ環境を起�
 ## スクリプトの概要
 このリポジトリには、以下の主要なシェルスクリプトが含まれています。
 
-### `start-desktop.sh` (XFCE4 デスクトップ)
+### `start-xfce4.sh` (XFCE4 デスクトップ)
 -   Xvfb を使用して仮想ディスプレイ (`:0`) を設定します。
 -   XFCE デスクトップ環境を起動します。
 -   x11vnc を使用してVNCサーバーを起動し、仮想デスクトップにアクセスできるようにします。
 -   websockify を使用してnoVNCを起動し、ブラウザからVNCにアクセスするためのWebSocketプロキシを提供します。
 
-### `start-desktop2.sh` (LXQt デスクトップ)
--   `start-desktop.sh` と同様に仮想デスクトップ環境を提供しますが、軽量なLXQtデスクトップ環境を使用します。
+### `start-lxqt.sh` (LXQt デスクトップ)
+-   `start-xfce4.sh` と同様に仮想デスクトップ環境を提供しますが、軽量なLXQtデスクトップ環境を使用します。
 -   リソース消費を抑えたい場合に適しています。
 
 ### `run-qutebrowser.sh`
@@ -26,31 +26,31 @@ GitHub Codespaces などの開発環境で仮想デスクトップ環境を起�
 1.  GitHub Codespaces などのLinuxベースの開発環境で、このリポジトリをクローンまたはダウンロードします。
 2.  ターミナルを開き、スクリプトがあるディレクトリに移動します。
 
-### `start-desktop.sh` の使い方 (XFCE4 デスクトップ)
+### `start-xfce4.sh` の使い方 (XFCE4 デスクトップ)
 
 1.  以下のコマンドでスクリプトに実行権限を付与します。
     ```bash
-    chmod +x start-desktop.sh
+    chmod +x start-xfce4.sh
     ```
 2.  スクリプトを実行します。(初回は必要なパッケージをインストールするため、時間がかかります)
     ```bash
-    ./start-desktop.sh
+    ./start-xfce4.sh
     ```
 3.  スクリプトが正常に起動すると、Codespacesのフォワードポート機能により、ブラウザでアクセスするためのURLが表示されます。表示されたURLにアクセスしてください。（例: `https://<your-codespace>-6080.app.github.dev/vnc.html`）
 4.  デスクトップ環境がブラウザに表示されます。
 5.  作業が終了したら、スクリプトを実行したターミナルで `Ctrl+C` を押して、全てのプロセスを終了させてください。
 
-### `start-desktop2.sh` の使い方 (LXQt デスクトップ)
+### `start-lxqt.sh` の使い方 (LXQt デスクトップ)
 
 1.  以下のコマンドでスクリプトに実行権限を付与します。
     ```bash
-    chmod +x start-desktop2.sh
+    chmod +x start-lxqt.sh
     ```
 2.  スクリプトを実行します。(初回は必要なパッケージをインストールするため、時間がかかります)
     ```bash
-    ./start-desktop2.sh
+    ./start-lxqt.sh
     ```
-3.  アクセス方法は `start-desktop.sh` と同様です。表示されるURLにアクセスしてください。
+3.  アクセス方法は `start-xfce4.sh` と同様です。表示されるURLにアクセスしてください。
 
 ### `run-qutebrowser.sh` の使い方
 
