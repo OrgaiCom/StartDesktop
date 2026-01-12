@@ -5,6 +5,7 @@
 # 使い方: source setup_chrome_override.sh
 
 echo "binディレクトリにgoogle-chromeのシンボリックリンクを作成中..."
+mkdir ./bin
 # リンクが既に存在する場合に上書きするために -f を使用します。
 ln -sf ../run-chrome.sh ./bin/google-chrome
 
