@@ -22,7 +22,7 @@ done
 
 if [ -n "$PACKAGES_TO_INSTALL" ]; then
   echo "📦 必要なパッケージをインストールしています... ($PACKAGES_TO_INSTALL )"
-  sudo apt-get update
+  sudo apt-get update --allow-releaseinfo-change 2>/dev/null || true
   sudo apt-get install -y $PACKAGES_TO_INSTALL
   echo "✅ インストールが完了しました。"
 fi
